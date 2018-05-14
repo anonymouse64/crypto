@@ -3,9 +3,8 @@
 
 // func KeccakF1600(state *[25]uint64, constants *[24]uint64)
 TEXT ·KeccakF1600(SB), 0, $0-8
-    WORD $0xe59d0004;  // ldr      r0        [sp #4] 
-    WORD $0xe59d1008;  // ldr      r1        [sp #8] 
-    WORD $0xe1a0200e;  // mov      r2        lr  
+    MOVW 0x4(R13), R0  // ldr      r0        [sp #4] 
+    MOVW 0x8(R13), R1  // ldr      r1        [sp #8] 
     WORD $0xed2d8b10;  // vpush    {d8-d15}  
     WORD $0xf42007dd;  // vld1.64  {d0}      [r0 :64]!  
     WORD $0xf42027dd;  // vld1.64  {d2}      [r0 :64]!  
@@ -30,7 +29,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf4604aed;  // vld1.64  {d20-d21} [r0 :128]! 
     WORD $0xf4606aed;  // vld1.64  {d22-d23} [r0 :128]! 
     WORD $0xf46087df;  // vld1.64  {d24}     [r0 :64]   
-    WORD $0xe24000c0;  // sub      r0        r0         #192 
+    SUB $192, R0, R0   // sub      r0        r0         #192 
     WORD $0xf340a15a;  // veor     q13       q0         q5   
     WORD $0xf4408aed;  // vst1.64  {d24-d25} [r0 :128]! 
     WORD $0xf342c15c;  // veor     q14       q1         q6 
@@ -49,7 +48,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34cc1b6;  // veor     d28       d28        d22 
     WORD $0xf34ed1b7;  // veor     d29       d30        d23 
     WORD $0xf34991b8;  // veor     d25       d25        d24 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf27be8ab;  // vadd.i64 d30       d27        d27 
     WORD $0xf27c88ac;  // vadd.i64 d24       d28        d28 
     WORD $0xf23d88ad;  // vadd.i64 d8        d29        d29 
@@ -86,7 +85,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34001f2;  // veor     q8        q8         q9 
     WORD $0xf4602aef;  // vld1.64  {d18-d19} [r0 :128]  
     WORD $0xf34881ba;  // veor     d24       d24        d26 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf308817a;  // veor     q4        q4         q13 
     WORD $0xf34221fa;  // veor     q9        q9         q13 
     WORD $0xf262b112;  // vorr     d27       d2         d2  
@@ -192,7 +191,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34cc1b6;  // veor     d28       d28        d22 
     WORD $0xf34ed1b7;  // veor     d29       d30        d23 
     WORD $0xf34991b8;  // veor     d25       d25        d24 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf27be8ab;  // vadd.i64 d30       d27        d27 
     WORD $0xf27c88ac;  // vadd.i64 d24       d28        d28 
     WORD $0xf23d88ad;  // vadd.i64 d8        d29        d29 
@@ -229,7 +228,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34001f2;  // veor     q8        q8         q9 
     WORD $0xf4602aef;  // vld1.64  {d18-d19} [r0 :128]  
     WORD $0xf34881ba;  // veor     d24       d24        d26 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf308817a;  // veor     q4        q4         q13 
     WORD $0xf34221fa;  // veor     q9        q9         q13 
     WORD $0xf262b112;  // vorr     d27       d2         d2  
@@ -335,7 +334,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34cc1b6;  // veor     d28       d28        d22 
     WORD $0xf34ed1b7;  // veor     d29       d30        d23 
     WORD $0xf34991b8;  // veor     d25       d25        d24 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf27be8ab;  // vadd.i64 d30       d27        d27 
     WORD $0xf27c88ac;  // vadd.i64 d24       d28        d28 
     WORD $0xf23d88ad;  // vadd.i64 d8        d29        d29 
@@ -372,7 +371,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34001f2;  // veor     q8        q8         q9 
     WORD $0xf4602aef;  // vld1.64  {d18-d19} [r0 :128]  
     WORD $0xf34881ba;  // veor     d24       d24        d26 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf308817a;  // veor     q4        q4         q13 
     WORD $0xf34221fa;  // veor     q9        q9         q13 
     WORD $0xf262b112;  // vorr     d27       d2         d2  
@@ -478,7 +477,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34cc1b6;  // veor     d28       d28        d22 
     WORD $0xf34ed1b7;  // veor     d29       d30        d23 
     WORD $0xf34991b8;  // veor     d25       d25        d24 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf27be8ab;  // vadd.i64 d30       d27        d27 
     WORD $0xf27c88ac;  // vadd.i64 d24       d28        d28 
     WORD $0xf23d88ad;  // vadd.i64 d8        d29        d29 
@@ -515,7 +514,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34001f2;  // veor     q8        q8         q9 
     WORD $0xf4602aef;  // vld1.64  {d18-d19} [r0 :128]  
     WORD $0xf34881ba;  // veor     d24       d24        d26 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf308817a;  // veor     q4        q4         q13 
     WORD $0xf34221fa;  // veor     q9        q9         q13 
     WORD $0xf262b112;  // vorr     d27       d2         d2  
@@ -621,7 +620,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34cc1b6;  // veor     d28       d28        d22 
     WORD $0xf34ed1b7;  // veor     d29       d30        d23 
     WORD $0xf34991b8;  // veor     d25       d25        d24 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf27be8ab;  // vadd.i64 d30       d27        d27 
     WORD $0xf27c88ac;  // vadd.i64 d24       d28        d28 
     WORD $0xf23d88ad;  // vadd.i64 d8        d29        d29 
@@ -658,7 +657,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34001f2;  // veor     q8        q8         q9 
     WORD $0xf4602aef;  // vld1.64  {d18-d19} [r0 :128]  
     WORD $0xf34881ba;  // veor     d24       d24        d26 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf308817a;  // veor     q4        q4         q13 
     WORD $0xf34221fa;  // veor     q9        q9         q13 
     WORD $0xf262b112;  // vorr     d27       d2         d2  
@@ -764,7 +763,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34cc1b6;  // veor     d28       d28        d22 
     WORD $0xf34ed1b7;  // veor     d29       d30        d23 
     WORD $0xf34991b8;  // veor     d25       d25        d24 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf27be8ab;  // vadd.i64 d30       d27        d27 
     WORD $0xf27c88ac;  // vadd.i64 d24       d28        d28 
     WORD $0xf23d88ad;  // vadd.i64 d8        d29        d29 
@@ -801,7 +800,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34001f2;  // veor     q8        q8         q9 
     WORD $0xf4602aef;  // vld1.64  {d18-d19} [r0 :128]  
     WORD $0xf34881ba;  // veor     d24       d24        d26 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf308817a;  // veor     q4        q4         q13 
     WORD $0xf34221fa;  // veor     q9        q9         q13 
     WORD $0xf262b112;  // vorr     d27       d2         d2  
@@ -907,7 +906,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34cc1b6;  // veor     d28       d28        d22 
     WORD $0xf34ed1b7;  // veor     d29       d30        d23 
     WORD $0xf34991b8;  // veor     d25       d25        d24 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf27be8ab;  // vadd.i64 d30       d27        d27 
     WORD $0xf27c88ac;  // vadd.i64 d24       d28        d28 
     WORD $0xf23d88ad;  // vadd.i64 d8        d29        d29 
@@ -944,7 +943,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34001f2;  // veor     q8        q8         q9 
     WORD $0xf4602aef;  // vld1.64  {d18-d19} [r0 :128]  
     WORD $0xf34881ba;  // veor     d24       d24        d26 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf308817a;  // veor     q4        q4         q13 
     WORD $0xf34221fa;  // veor     q9        q9         q13 
     WORD $0xf262b112;  // vorr     d27       d2         d2  
@@ -1050,7 +1049,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34cc1b6;  // veor     d28       d28        d22 
     WORD $0xf34ed1b7;  // veor     d29       d30        d23 
     WORD $0xf34991b8;  // veor     d25       d25        d24 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf27be8ab;  // vadd.i64 d30       d27        d27 
     WORD $0xf27c88ac;  // vadd.i64 d24       d28        d28 
     WORD $0xf23d88ad;  // vadd.i64 d8        d29        d29 
@@ -1087,7 +1086,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34001f2;  // veor     q8        q8         q9 
     WORD $0xf4602aef;  // vld1.64  {d18-d19} [r0 :128]  
     WORD $0xf34881ba;  // veor     d24       d24        d26 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf308817a;  // veor     q4        q4         q13 
     WORD $0xf34221fa;  // veor     q9        q9         q13 
     WORD $0xf262b112;  // vorr     d27       d2         d2  
@@ -1193,7 +1192,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34cc1b6;  // veor     d28       d28        d22 
     WORD $0xf34ed1b7;  // veor     d29       d30        d23 
     WORD $0xf34991b8;  // veor     d25       d25        d24 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf27be8ab;  // vadd.i64 d30       d27        d27 
     WORD $0xf27c88ac;  // vadd.i64 d24       d28        d28 
     WORD $0xf23d88ad;  // vadd.i64 d8        d29        d29 
@@ -1230,7 +1229,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34001f2;  // veor     q8        q8         q9 
     WORD $0xf4602aef;  // vld1.64  {d18-d19} [r0 :128]  
     WORD $0xf34881ba;  // veor     d24       d24        d26 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf308817a;  // veor     q4        q4         q13 
     WORD $0xf34221fa;  // veor     q9        q9         q13 
     WORD $0xf262b112;  // vorr     d27       d2         d2  
@@ -1336,7 +1335,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34cc1b6;  // veor     d28       d28        d22 
     WORD $0xf34ed1b7;  // veor     d29       d30        d23 
     WORD $0xf34991b8;  // veor     d25       d25        d24 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf27be8ab;  // vadd.i64 d30       d27        d27 
     WORD $0xf27c88ac;  // vadd.i64 d24       d28        d28 
     WORD $0xf23d88ad;  // vadd.i64 d8        d29        d29 
@@ -1373,7 +1372,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34001f2;  // veor     q8        q8         q9 
     WORD $0xf4602aef;  // vld1.64  {d18-d19} [r0 :128]  
     WORD $0xf34881ba;  // veor     d24       d24        d26 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf308817a;  // veor     q4        q4         q13 
     WORD $0xf34221fa;  // veor     q9        q9         q13 
     WORD $0xf262b112;  // vorr     d27       d2         d2  
@@ -1479,7 +1478,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34cc1b6;  // veor     d28       d28        d22 
     WORD $0xf34ed1b7;  // veor     d29       d30        d23 
     WORD $0xf34991b8;  // veor     d25       d25        d24 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf27be8ab;  // vadd.i64 d30       d27        d27 
     WORD $0xf27c88ac;  // vadd.i64 d24       d28        d28 
     WORD $0xf23d88ad;  // vadd.i64 d8        d29        d29 
@@ -1516,7 +1515,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34001f2;  // veor     q8        q8         q9 
     WORD $0xf4602aef;  // vld1.64  {d18-d19} [r0 :128]  
     WORD $0xf34881ba;  // veor     d24       d24        d26 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf308817a;  // veor     q4        q4         q13 
     WORD $0xf34221fa;  // veor     q9        q9         q13 
     WORD $0xf262b112;  // vorr     d27       d2         d2  
@@ -1622,7 +1621,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34cc1b6;  // veor     d28       d28        d22 
     WORD $0xf34ed1b7;  // veor     d29       d30        d23 
     WORD $0xf34991b8;  // veor     d25       d25        d24 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf27be8ab;  // vadd.i64 d30       d27        d27 
     WORD $0xf27c88ac;  // vadd.i64 d24       d28        d28 
     WORD $0xf23d88ad;  // vadd.i64 d8        d29        d29 
@@ -1659,7 +1658,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34001f2;  // veor     q8        q8         q9 
     WORD $0xf4602aef;  // vld1.64  {d18-d19} [r0 :128]  
     WORD $0xf34881ba;  // veor     d24       d24        d26 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf308817a;  // veor     q4        q4         q13 
     WORD $0xf34221fa;  // veor     q9        q9         q13 
     WORD $0xf262b112;  // vorr     d27       d2         d2  
@@ -1765,7 +1764,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34cc1b6;  // veor     d28       d28        d22 
     WORD $0xf34ed1b7;  // veor     d29       d30        d23 
     WORD $0xf34991b8;  // veor     d25       d25        d24 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf27be8ab;  // vadd.i64 d30       d27        d27 
     WORD $0xf27c88ac;  // vadd.i64 d24       d28        d28 
     WORD $0xf23d88ad;  // vadd.i64 d8        d29        d29 
@@ -1802,7 +1801,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34001f2;  // veor     q8        q8         q9 
     WORD $0xf4602aef;  // vld1.64  {d18-d19} [r0 :128]  
     WORD $0xf34881ba;  // veor     d24       d24        d26 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf308817a;  // veor     q4        q4         q13 
     WORD $0xf34221fa;  // veor     q9        q9         q13 
     WORD $0xf262b112;  // vorr     d27       d2         d2  
@@ -1908,7 +1907,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34cc1b6;  // veor     d28       d28        d22 
     WORD $0xf34ed1b7;  // veor     d29       d30        d23 
     WORD $0xf34991b8;  // veor     d25       d25        d24 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf27be8ab;  // vadd.i64 d30       d27        d27 
     WORD $0xf27c88ac;  // vadd.i64 d24       d28        d28 
     WORD $0xf23d88ad;  // vadd.i64 d8        d29        d29 
@@ -1945,7 +1944,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34001f2;  // veor     q8        q8         q9 
     WORD $0xf4602aef;  // vld1.64  {d18-d19} [r0 :128]  
     WORD $0xf34881ba;  // veor     d24       d24        d26 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf308817a;  // veor     q4        q4         q13 
     WORD $0xf34221fa;  // veor     q9        q9         q13 
     WORD $0xf262b112;  // vorr     d27       d2         d2  
@@ -2051,7 +2050,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34cc1b6;  // veor     d28       d28        d22 
     WORD $0xf34ed1b7;  // veor     d29       d30        d23 
     WORD $0xf34991b8;  // veor     d25       d25        d24 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf27be8ab;  // vadd.i64 d30       d27        d27 
     WORD $0xf27c88ac;  // vadd.i64 d24       d28        d28 
     WORD $0xf23d88ad;  // vadd.i64 d8        d29        d29 
@@ -2088,7 +2087,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34001f2;  // veor     q8        q8         q9 
     WORD $0xf4602aef;  // vld1.64  {d18-d19} [r0 :128]  
     WORD $0xf34881ba;  // veor     d24       d24        d26 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf308817a;  // veor     q4        q4         q13 
     WORD $0xf34221fa;  // veor     q9        q9         q13 
     WORD $0xf262b112;  // vorr     d27       d2         d2  
@@ -2194,7 +2193,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34cc1b6;  // veor     d28       d28        d22 
     WORD $0xf34ed1b7;  // veor     d29       d30        d23 
     WORD $0xf34991b8;  // veor     d25       d25        d24 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf27be8ab;  // vadd.i64 d30       d27        d27 
     WORD $0xf27c88ac;  // vadd.i64 d24       d28        d28 
     WORD $0xf23d88ad;  // vadd.i64 d8        d29        d29 
@@ -2231,7 +2230,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34001f2;  // veor     q8        q8         q9 
     WORD $0xf4602aef;  // vld1.64  {d18-d19} [r0 :128]  
     WORD $0xf34881ba;  // veor     d24       d24        d26 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf308817a;  // veor     q4        q4         q13 
     WORD $0xf34221fa;  // veor     q9        q9         q13 
     WORD $0xf262b112;  // vorr     d27       d2         d2  
@@ -2337,7 +2336,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34cc1b6;  // veor     d28       d28        d22 
     WORD $0xf34ed1b7;  // veor     d29       d30        d23 
     WORD $0xf34991b8;  // veor     d25       d25        d24 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf27be8ab;  // vadd.i64 d30       d27        d27 
     WORD $0xf27c88ac;  // vadd.i64 d24       d28        d28 
     WORD $0xf23d88ad;  // vadd.i64 d8        d29        d29 
@@ -2374,7 +2373,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34001f2;  // veor     q8        q8         q9 
     WORD $0xf4602aef;  // vld1.64  {d18-d19} [r0 :128]  
     WORD $0xf34881ba;  // veor     d24       d24        d26 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf308817a;  // veor     q4        q4         q13 
     WORD $0xf34221fa;  // veor     q9        q9         q13 
     WORD $0xf262b112;  // vorr     d27       d2         d2  
@@ -2480,7 +2479,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34cc1b6;  // veor     d28       d28        d22 
     WORD $0xf34ed1b7;  // veor     d29       d30        d23 
     WORD $0xf34991b8;  // veor     d25       d25        d24 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf27be8ab;  // vadd.i64 d30       d27        d27 
     WORD $0xf27c88ac;  // vadd.i64 d24       d28        d28 
     WORD $0xf23d88ad;  // vadd.i64 d8        d29        d29 
@@ -2517,7 +2516,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34001f2;  // veor     q8        q8         q9 
     WORD $0xf4602aef;  // vld1.64  {d18-d19} [r0 :128]  
     WORD $0xf34881ba;  // veor     d24       d24        d26 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf308817a;  // veor     q4        q4         q13 
     WORD $0xf34221fa;  // veor     q9        q9         q13 
     WORD $0xf262b112;  // vorr     d27       d2         d2  
@@ -2623,7 +2622,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34cc1b6;  // veor     d28       d28        d22 
     WORD $0xf34ed1b7;  // veor     d29       d30        d23 
     WORD $0xf34991b8;  // veor     d25       d25        d24 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf27be8ab;  // vadd.i64 d30       d27        d27 
     WORD $0xf27c88ac;  // vadd.i64 d24       d28        d28 
     WORD $0xf23d88ad;  // vadd.i64 d8        d29        d29 
@@ -2660,7 +2659,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34001f2;  // veor     q8        q8         q9 
     WORD $0xf4602aef;  // vld1.64  {d18-d19} [r0 :128]  
     WORD $0xf34881ba;  // veor     d24       d24        d26 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf308817a;  // veor     q4        q4         q13 
     WORD $0xf34221fa;  // veor     q9        q9         q13 
     WORD $0xf262b112;  // vorr     d27       d2         d2  
@@ -2766,7 +2765,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34cc1b6;  // veor     d28       d28        d22 
     WORD $0xf34ed1b7;  // veor     d29       d30        d23 
     WORD $0xf34991b8;  // veor     d25       d25        d24 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf27be8ab;  // vadd.i64 d30       d27        d27 
     WORD $0xf27c88ac;  // vadd.i64 d24       d28        d28 
     WORD $0xf23d88ad;  // vadd.i64 d8        d29        d29 
@@ -2803,7 +2802,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34001f2;  // veor     q8        q8         q9 
     WORD $0xf4602aef;  // vld1.64  {d18-d19} [r0 :128]  
     WORD $0xf34881ba;  // veor     d24       d24        d26 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf308817a;  // veor     q4        q4         q13 
     WORD $0xf34221fa;  // veor     q9        q9         q13 
     WORD $0xf262b112;  // vorr     d27       d2         d2  
@@ -2909,7 +2908,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34cc1b6;  // veor     d28       d28        d22 
     WORD $0xf34ed1b7;  // veor     d29       d30        d23 
     WORD $0xf34991b8;  // veor     d25       d25        d24 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf27be8ab;  // vadd.i64 d30       d27        d27 
     WORD $0xf27c88ac;  // vadd.i64 d24       d28        d28 
     WORD $0xf23d88ad;  // vadd.i64 d8        d29        d29 
@@ -2946,7 +2945,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34001f2;  // veor     q8        q8         q9 
     WORD $0xf4602aef;  // vld1.64  {d18-d19} [r0 :128]  
     WORD $0xf34881ba;  // veor     d24       d24        d26 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf308817a;  // veor     q4        q4         q13 
     WORD $0xf34221fa;  // veor     q9        q9         q13 
     WORD $0xf262b112;  // vorr     d27       d2         d2  
@@ -3052,7 +3051,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34cc1b6;  // veor     d28       d28        d22 
     WORD $0xf34ed1b7;  // veor     d29       d30        d23 
     WORD $0xf34991b8;  // veor     d25       d25        d24 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf27be8ab;  // vadd.i64 d30       d27        d27 
     WORD $0xf27c88ac;  // vadd.i64 d24       d28        d28 
     WORD $0xf23d88ad;  // vadd.i64 d8        d29        d29 
@@ -3089,7 +3088,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34001f2;  // veor     q8        q8         q9 
     WORD $0xf4602aef;  // vld1.64  {d18-d19} [r0 :128]  
     WORD $0xf34881ba;  // veor     d24       d24        d26 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf308817a;  // veor     q4        q4         q13 
     WORD $0xf34221fa;  // veor     q9        q9         q13 
     WORD $0xf262b112;  // vorr     d27       d2         d2  
@@ -3195,7 +3194,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34cc1b6;  // veor     d28       d28        d22 
     WORD $0xf34ed1b7;  // veor     d29       d30        d23 
     WORD $0xf34991b8;  // veor     d25       d25        d24 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf27be8ab;  // vadd.i64 d30       d27        d27 
     WORD $0xf27c88ac;  // vadd.i64 d24       d28        d28 
     WORD $0xf23d88ad;  // vadd.i64 d8        d29        d29 
@@ -3232,7 +3231,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34001f2;  // veor     q8        q8         q9 
     WORD $0xf4602aef;  // vld1.64  {d18-d19} [r0 :128]  
     WORD $0xf34881ba;  // veor     d24       d24        d26 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf308817a;  // veor     q4        q4         q13 
     WORD $0xf34221fa;  // veor     q9        q9         q13 
     WORD $0xf262b112;  // vorr     d27       d2         d2  
@@ -3338,7 +3337,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34cc1b6;  // veor     d28       d28        d22 
     WORD $0xf34ed1b7;  // veor     d29       d30        d23 
     WORD $0xf34991b8;  // veor     d25       d25        d24 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf27be8ab;  // vadd.i64 d30       d27        d27 
     WORD $0xf27c88ac;  // vadd.i64 d24       d28        d28 
     WORD $0xf23d88ad;  // vadd.i64 d8        d29        d29 
@@ -3375,7 +3374,7 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf34001f2;  // veor     q8        q8         q9 
     WORD $0xf4602aef;  // vld1.64  {d18-d19} [r0 :128]  
     WORD $0xf34881ba;  // veor     d24       d24        d26 
-    WORD $0xe2400020;  // sub      r0        r0         #32 
+    SUB $32, R0, R0    // sub      r0        r0         #32 
     WORD $0xf308817a;  // veor     q4        q4         q13 
     WORD $0xf34221fa;  // veor     q9        q9         q13 
     WORD $0xf262b112;  // vorr     d27       d2         d2  
@@ -3487,4 +3486,4 @@ TEXT ·KeccakF1600(SB), 0, $0-8
     WORD $0xf4406aed;  // vst1.64  {d22-d23} [r0 :128]! 
     WORD $0xf44087df;  // vst1.64  {d24}     [r0 :64]   
     WORD $0xecbd8b10;  // vpop     {d8-d15}  
-    WORD $0xe12fff12;  // bx       r2        
+    RET
