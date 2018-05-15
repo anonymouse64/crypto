@@ -4,7 +4,7 @@
 
 // +build arm,!appengine,!gccgo
 
-// This generates the plan9 assembly code from the native ARM assembly code - it assumes that arm-linux-gnueabihf utils is installed on and on the $PATH
+// This generates the plan9 assembly code from the native ARM assembly code - it assumes that arm-linux-gnueabihf utils is installed on the $PATH
 // as well as the tool asm2go : https://github.com/anonymouse64/asm2go
 //go:generate asm2go -as arm-linux-gnueabihf-as -file asm_src/keccakf_arm.s -gofile keccakf_arm.go -out keccakf_arm.s -as-opts -march=armv7-a -as-opts -mfpu=neon-vfpv4
 

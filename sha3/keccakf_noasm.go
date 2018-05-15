@@ -1,4 +1,4 @@
-//  +build !amd64,!arm appengine gccgo
+//  +build !amd64,!arm,!arm64 appengine gccgo
 
 package sha3
 
